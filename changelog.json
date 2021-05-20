@@ -1,0 +1,282 @@
+{
+    "databaseChangeLog": [
+      {
+        "changeSet": {
+          "id": "v1-create-table-shape",
+          "context": "v1",
+          "author": "omuck",
+          "changes": [
+            {
+              "tagDatabase": {
+                "tag": "v-1_001"
+              }
+            },
+            {
+              "sqlFile": {
+                "dbms": "postgresql",
+                "path": "./v1/create-table-shape.sql"
+              }
+            }
+          ],
+          "rollback": {
+            "sqlFile": {
+              "path": "./v1/rollback/rb-shape-v1_001.sql"
+            }
+          }
+        }
+      },
+
+      {
+        "changeSet":{
+          "id": "v1-create-table-brand",
+          "author": "omuck",
+          "changes": [
+            {
+              "tagDatabase": {
+                "tag": "v-1_002"
+              }
+            },
+            {
+              "createTable": {
+                "tableName":  "brand",
+                "columns": [
+                  {
+                    "column": {
+                      "name": "id",
+                      "type": "int",
+                      "autoIncrement": true,
+                      "constraints": {
+                        "primaryKey": true,
+                        "nullable": false
+                      }
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "brand_name",
+                      "type": "varchar(20)",
+                      "constraints": {
+                        "nullable": false
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "rollback": {
+            "sqlFile": {
+              "path": "./v1/rollback/rb-brand-v1_002.sql"
+            }
+          }
+        }
+      },
+
+      {
+        "changeSet": {
+          "id": "v1-alter-table-shape",
+          "author": "omuck",
+          "changes": [
+            {
+              "tagDatabase": {
+                "tag": "v-1_003"
+              }
+            },
+            {
+              "sqlFile": {
+                "path": "./v1/alter-table-shape.sql"
+              }
+            }
+          ],
+          "rollback": {
+            "sqlFile": {
+              "path": "./v1/rollback/rb-shape-v1_003.sql"
+            }
+          }
+        }
+      },
+
+      {
+        "changeSet": {
+          "id": "v1-insert-brand",
+          "author": "omuck",
+          "context": "insert-v1",
+          "changes": [
+            {
+              "tagDatabase": {
+                "tag": "v-1_004"
+              }
+            },
+            {
+              "sqlFile": {
+                "path": "./v1/insert-brand.sql"
+              }
+            }
+          ],
+          "rollback": {
+            "sqlFile": {
+              "path": "./v1/rollback/rb-brand-v1_004.sql"
+            }
+          }
+        }
+      },
+
+      {
+        "changeSet": {
+          "id": "v1-insert-shape",
+          "author": "omuck",
+          "comments":"insert em shape",
+          "context": "v-1-insert-shape",
+          "changes": [
+            {
+              "tagDatabase": {
+                "tag": "v-1_005"
+              }
+            },
+            {
+              "sqlFile": {
+                "path": "./v1/insert-shape.sql"
+              }
+            }
+          ],
+          "rollback": [
+            {
+              "sqlFile": {
+                "path": "./v1/rollback/rb-shape-v1_005.sql"
+              }
+            }
+          ]
+        }
+      },
+
+      {
+        "changeSet": {
+          "id": "v1-index-shape",
+          "author": "omuck",
+          "changes": [
+            {
+              "tagDatabase": {
+                "tag": "v-1_006"
+              }
+            },
+            {
+              "sqlFile": {
+                "path": "./v1/create-index-shape.sql"
+              }
+            }
+          ],
+          "rollback": [
+            {
+              "sqlFile":{
+                "path": "./v1/rollback/rb-shape-v1_006.sql"
+              }
+            }
+          ]
+        }
+      },
+
+      {
+        "changeSet": {
+          "id": "v1-add-column-color-shape",
+          "author": "omuck",
+          "changes": [
+            {
+              "tagDatabase": {
+                "tag": "v-1_007"
+              }
+            },
+            {
+              "sqlFile": {
+                "path": "./v1/add-column-color-shape.sql"
+              }
+            }
+          ],
+          "rollback": [
+            {
+              "sqlFile": {
+                "path": "./v1/rollback/rb-shape-v1_007.sql"
+              }
+            }
+          ]
+        }
+      },
+
+      {
+        "changeSet": {
+          "id": "v1-add-column-location-brand",
+          "author": "omuck",
+          "changes": [
+            {
+              "tagDatabase": {
+                  "tag": "v-1_008"
+              }
+            },
+            {
+              "sqlFile": {
+                "path": "./v1/add-column-location-brand.sql"
+              }
+            }
+          ],
+          "rollback": [
+            {
+              "sqlFile": {
+                "path": "./v1/rollback/rb-brand-v1_008.sql"
+              }
+            }
+          ]
+        }
+      },
+
+      {
+        "changeSet": {
+          "id": "v-1-update-color-shape",
+          "author": "omuck",
+          "changes": [
+            {
+              "tagDatabase": {
+                "tag": "v-1_009"
+              }
+            },
+            {
+              "sqlFile": {
+                "path": "./v1/update-color-shape.sql"
+              }
+            }
+          ],
+          "rollback": [
+            {
+              "sqlFile": {
+                "path": "./v1/rollback/rb-shape-v1_009.sql"
+              }
+            }
+          ]
+        }
+      },
+
+      {
+        "changeSet": {
+          "id": "v-1-update-location-brand",
+          "author": "omuck",
+          "changes": [
+            {
+              "tagDatabase": {
+                "tag": "v-1_009"
+              }
+            },
+            {
+              "sqlFile": {
+                "path": "./v1/update-location-brand.sql"
+              }
+            }
+          ],
+          "rollback": [
+            {
+              "sqlFile": {
+                "path": "./v1/rollback/rb-brand-v1_009.sql"
+              }
+            }
+          ]
+        }
+      }
+    ]
+}
