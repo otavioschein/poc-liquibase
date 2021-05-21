@@ -47,6 +47,9 @@ com o valor especificado.
     Faz um update no banco de dados de acordo com o ChangeLog e a tabela de log, mas somente até um changeSet específico,
 localizado pela tag.
     liquibase updateToTag tag
+    ```bash
+    liquiabse updateToTag <tag>
+    ```
   
 - #### rollback
     Faz um rollback no banco até uma tag específica.
