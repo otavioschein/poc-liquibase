@@ -29,7 +29,7 @@ sendo informado o autor e o id. Pode ser em sql, json, xml, etc. No final, deve 
 changeSets, cada um ocupa uma linha na tabela. 
   
 #### 5. ChangeLog Database Lock
-- É o banco de log que impede algum changeSet de outro autor, ser executado antes de um changeSet, que está em execução.
+- É o banco de log que impede algum changeSet, de outro autor, ser executado antes de um changeSet que está em execução.
 
 ### Alguns Comandos
 - #### update
@@ -133,7 +133,7 @@ Segue um outro exemplo:
   ]
 }
 ```
-Aqui, fica um json um pouco mais limpo, o qual indica o caminho de um arquivo .sql que será responsável pela manipulação
+Aqui, fica um json um pouco mais limpo, o qual indica o caminho de um arquivo ".sql" que será responsável pela manipulação
 do banco.
 
 ```sql
@@ -149,7 +149,7 @@ Com o arquivo changelog tendo conteúdo, pode-se rodar o comando:
 ```bash
 liquibase update
 ```
-Após isso, deve ter recebido uma mensagem de suceddo e ter sido criado as duas tabelas, conforme os changeSet's.
+Após isso, deve-se receber uma mensagem de sucesso e criar as duas tabelas, conforme os changeSet's.
 E além delas, as tabelas "databasechangelog" e "databasechangeloglock" também.
 
 ![databasechangelog criada](./images/dbchangelogempty.png)
@@ -159,18 +159,20 @@ de um determinado changeSet. Assim, o liquibase sabe quando foi e quando não fo
 
 ![databasechangelog criada](./images/dbclfull.png)
 
+Quando esse campo for null quer dizer que o changeSet não foi executado ainda, então em um próximo update 
+ele será executado e o campo será preenchido com um código.
+
 Outro ponto a ser analisado é a coluna "Tag".
 
 ### Tag
-A tag é um componente importante, é ela que permite um rollback com exatidão e um updateToTag
-também.
-Cada changeSet recebe então uma tag, pode ser a mesma que outro ou uma totalmente diferente.
+A tag é um componente importante, é ela que permite um rollback e um updateToTag também.
+Cada changeSet recebe uma tag, pode ser a mesma que outro ou uma totalmente diferente.
 
 Caso não tenha sido adicionado a tag para o changeSet, há um comando a ser feito:
 ```bash
 liquibase tag <tag-name>
 ```
-Essa tag será referência para o estado atual do banco.
+Essa tag gerada será referência para o estado atual do banco.
 
 ### Rollback
 E como comentado, o rollback é feito pela tag. É nescessário um script de rollback para ele ser efetivado,
@@ -186,7 +188,13 @@ O rollback recebe um lugar especial no changeSet, onde é informado o caminho do
 ```
 Ele é inserido logo após a chave de "changes".
 
+Script:
+```sql
+DROP TABLE BRAND;
+```
+
 E para executar o rollback, segue o comando:
 ```bash
 liquibase rollback <tag>
 ```
+Após a execução, deve-se receber uma mensagem de sucesso.
